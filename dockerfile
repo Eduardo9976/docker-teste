@@ -1,8 +1,11 @@
 FROM node:erbium-alpine3.14
-RUN rm /app
-RUN mkdir /app
-RUN npm install -g @vue/cli
+RUN mkdir -p /usr/src/docker-teste
+WORKDIR /usr/src/docker-teste
+
+COPY . .
 RUN npm install
 RUN npm run build
 
-https://tfs.homolog.corp/tfs/Financeira/Novo%20Office%20Banking/_git/officebanking-front
+EXPOSE 3000
+ENV NUXT_HOST=0.0.0.0
+ENV NUXT_PORT=3000

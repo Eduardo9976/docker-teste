@@ -1,14 +1,20 @@
 version: "3.8"
-services:  
-  app:
+services:
+  nuxt-my-app:
     build: .
     image: node:erbium-alpine3.14
-    command: npm run prod
+    command: [
+        "sh",
+        "-c",
+        "
+        npm run build && npm run prod
+        ",
+      ]
     volumes:
-        - .:/app
-    working_dir: /app  
+      - .:/usr/src/docker-teste
+    working_dir: /usr/src/docker-teste
     ports:
-        - "3000:3000"
-    environment: 
-        - HOST=0.0.0.0
-        - PORT=3000
+      - "3000:3000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
